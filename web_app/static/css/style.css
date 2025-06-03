@@ -1,0 +1,2059 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #005792;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #00334e;
+    border-radius: 3px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #00334e;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.feature-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    border-left: 4px solid #005792;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    color: #005792;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #005792;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #00334e;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #005792;
+    color: white;
+    margin-top: 2rem;
+}
+
+/* Table styles for data display */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+table th, table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+}
+
+/* Cluster statistics styling */
+.cluster-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cluster-stat-card {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.cluster-stat-card h4 {
+    margin-bottom: 0.5rem;
+    color: #005792;
+}
+
+.stat-item {
+    margin-bottom: 0.3rem;
+}
+
+.stat-item span {
+    font-weight: bold;
+}
+
+/* Map and controls styling */
+.map-container {
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cluster-controls {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metrics-container {
+    margin: 1rem 0;
+}
+
+.metrics-container table {
+    width: auto;
+    min-width: 300px;
+}
+
+/* Filter container styling */
+.filter-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group input {
+    width: 70px;
+    padding: 0.3rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+/* Event list styling */
+.event-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-item {
+    display: flex;
+    padding: 0.8rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.event-item:hover {
+    background-color: #f0f0f0;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.magnitude {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.event-details {
+    flex-grow: 1;
+}
+
+.event-location {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.event-time, .event-depth {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.loading-text, .error-text {
+    padding: 1rem;
+    text-align: center;
+}
+
+.error-text {
+    color: #d9534f;
+}
+
+/* Real-time earthquake page styles */
+.data-source-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.source-btn {
+    padding: 0.6rem 1.2rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.source-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.source-btn.active {
+    background-color: #005792;
+    color: white;
+    border-color: #004a7c;
+}
+
+.earthquake-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.map-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 500px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.info-table td {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+}
+
+.info-table tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.info-table td:first-child {
+    font-weight: bold;
+    width: 30%;
+    background-color: #f0f0f0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.6rem 0.5rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #005792;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.detail-btn {
+    padding: 0.3rem 0.6rem;
+    background-color: #005792;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.detail-btn:hover {
+    background-color: #00334e;
+}
+
+.legend-container {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 1rem;
+}
+
+.legend-flex {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.legend-container h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.legend-container h4 {
+    margin: 0.7rem 0 0.3rem;
+    font-size: 0.95rem;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+}
+
+.circle-marker {
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.depth-marker {
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+}
+
+.magnitude-legend, .depth-legend {
+    margin-bottom: 0.8rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 700px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.detail-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.detail-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.detail-table td:first-child {
+    width: 30%;
+    font-weight: normal;
+    background-color: #f0f0f0;
+}
+
+/* Clustering page specific styles */
+.cluster-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.option-buttons button {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.option-buttons button.active {
+    background-color: #005792;
+    color: white;
+}
+
+#clusterSelector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#clusterSelector select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.cluster-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.cluster-stat-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.metrics-table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.metrics-table th, .metrics-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+}
+
+.metrics-table th {
+    background-color: #f0f0f0;
+    text-align: left;
+    width: 50%;
+}
+
+.centroid-label {
+    z-index: 500;
+    pointer-events: none;
+}
+
+.marker-cluster div {
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    margin-top: 0;
+    text-align: center;
+    border-radius: 50%;
+    font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.stat-details {
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.stat-details p {
+    margin: 0.3rem 0;
+}
+
+/* Styling for concept tabs */
+.concept-tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.concept-tab {
+    padding: 10px 15px;
+    margin-right: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.concept-tab.active {
+    background-color: #005792;
+    color: white;
+    border-color: #005792;
+}
+
+.concept-description {
+    margin-bottom: 20px;
+}
+
+.concept-desc {
+    display: none;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.concept-desc.active {
+    display: block;
+}
+
+.concept-map {
+    display: none;
+}
+
+.concept-map.active {
+    display: block;
+}
+
+/* Styling for cluster legend */
+.cluster-legend {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* Centroid marker styling */
+.centroid-marker {
+    border: none;
+    background: none;
+}
+
+.cluster-filter-controls {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-btn.active {
+    background-color: #005792;
+    color: white;
+    border-color: #004a7c;
+}
+
+.cluster-specific-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.cluster-0-btn {
+    border-left: 3px solid #FF5733;
+}
+
+.cluster-1-btn {
+    border-left: 3px solid #33FF57;
+}
+
+.cluster-2-btn {
+    border-left: 3px solid #3357FF;
+}
+/* Simulation page styles */
+.simulation-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.simulation-sidebar {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.simulation-main {
+    flex: 2;
+    min-width: 600px;
+}
+
+.simulation-card, .prediction-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+.form-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cluster-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.result-details {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.result-details ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+}
+
+.result-details li {
+    margin-bottom: 0.3rem;
+}
+
+.visualization-tabs {
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.viz-tab {
+    padding: 0.6rem 1.2rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.viz-tab.active {
+    background-color: #005792;
+    color: white;
+    border-color: #005792;
+}
+
+.viz-content {
+    display: none;
+    margin-bottom: 1.5rem;
+}
+
+.viz-content.active {
+    display: block;
+}
+
+.chart-wrapper {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 500px;
+}
+
+.visualization-info {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.model-metrics {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+.metric-item {
+    flex: 1;
+    min-width: 150px;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.metric-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.metric-value {
+    font-size: 1.2rem;
+    color: #005792;
+}
+
+.map-info {
+    background-color: #f0f0f0;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #555;
+    font-style: italic;
+}
+/* Styling untuk cluster detail */
+.cluster-detail {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #666;
+    display: none;
+}
+
+.legend-item:hover .cluster-detail {
+    display: block;
+}
+
+.cluster-result {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.result-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1000px) {
+    .simulation-container {
+        flex-direction: column;
+    }
+    
+    .simulation-sidebar {
+        max-width: 100%;
+    }
+    
+    .simulation-main {
+        min-width: 100%;
+    }
+}
+
+/* Visualization row layout */
+.visualization-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cluster-stats {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-wrapper {
+    height: 400px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.heatmap-container {
+    margin: 2rem 0;
+}
+
+/* Table styles for cluster statistics */
+.cluster-stats .data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cluster-stats .data-table th,
+.cluster-stats .data-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cluster-stats .data-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+.cluster-stats .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-row {
+        flex-direction: column;
+    }
+}
+
+/* Visualization row layout */
+.visualization-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cluster-stats {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-wrapper {
+    height: 400px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.heatmap-container {
+    margin: 2rem 0;
+}
+
+/* Table styles for cluster statistics */
+.cluster-stats .data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cluster-stats .data-table th,
+.cluster-stats .data-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.cluster-stats .data-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+.cluster-stats .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Heatmap legend styling */
+.heatmap-legend {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.info.legend {
+    background-color: white;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.info.legend .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.heatmap-container {
+    margin: 2rem 0;
+    position: relative;
+}
+
+.heatmap-description {
+    margin-top: 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-row {
+        flex-direction: column;
+    }
+}
+/* Evaluation metrics table styling */
+.evaluation-metrics {
+    margin: 2rem 0;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-metrics h3 {
+    color: #005792;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.metrics-table th, .metrics-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.metrics-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+.metrics-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.metrics-note {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Heatmap styling improvements */
+.heatmap-container {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.heatmap-description {
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.heatmap-legend {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.info.legend {
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Cluster detail hover effect */
+.cluster-detail {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #666;
+    display: none;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    max-width: 300px;
+}
+
+.legend-item:hover .cluster-detail {
+    display: block;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-style: italic;
+    color: #666;
+}
+
+.loading-indicator::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid #ccc;
+    border-top-color: #005792;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+    padding: 1rem;
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+    border-radius: 0 4px 4px 0;
+    margin: 1rem 0;
+}
+
+/* Evaluation metrics table styling */
+.evaluation-metrics {
+    margin: 2rem 0;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-metrics h3 {
+    color: #005792;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.metrics-table th, .metrics-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.metrics-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+.metrics-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.metrics-note {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Heatmap styling improvements */
+.heatmap-container {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.heatmap-description {
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.heatmap-legend {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.info.legend {
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Cluster detail hover effect */
+.cluster-detail {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #666;
+    display: none;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    max-width: 300px;
+}
+
+.legend-item:hover .cluster-detail {
+    display: block;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-style: italic;
+    color: #666;
+}
+
+.loading-indicator::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid #ccc;
+    border-top-color: #005792;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+    padding: 1rem;
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+    border-radius: 0 4px 4px 0;
+    margin: 1rem 0;
+}
+
+/* Debug overlay styling */
+#debugOverlay {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+#debugOverlay pre {
+    max-height: 400px;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#debugOverlay h4 {
+    margin-top: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+/* Enhanced map marker styling */
+.centroid-marker {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.centroid-marker div {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+.centroid-marker div:hover {
+    transform: scale(1.5);
+}
+
+/* Cluster map container enhancements */
+.map-container {
+    position: relative;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Map attribution styling */
+.leaflet-control-attribution {
+    font-size: 10px !important;
+    background-color: rgba(255,255,255,0.7) !important;
+}
+
+/* Legend styling improvements */
+.cluster-legend {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Visualization row improvements */
+.visualization-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cluster-stats {
+    flex: 1;
+    min-width: 350px;
+    overflow-x: auto;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-wrapper {
+    height: 400px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Table improvements for cluster statistics */
+.cluster-stats .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.cluster-stats .data-table th,
+.cluster-stats .data-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.cluster-stats .data-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.cluster-stats .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Enhanced concept description styling */
+.concept-description {
+    margin-bottom: 20px;
+}
+
+.concept-desc {
+    padding: 15px;
+    background-color: #f5f9ff;
+    border-radius: 5px;
+    border-left: 4px solid #005792;
+}
+
+.concept-desc p {
+    margin-bottom: 0.8rem;
+}
+
+.concept-desc p:last-child {
+    margin-bottom: 0;
+}
+
+/* Make sure Leaflet popup content is readable */
+.leaflet-popup-content {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content strong {
+    color: #005792;
+    display: block;
+    margin-bottom: 3px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-row {
+        flex-direction: column;
+    }
+    
+    .cluster-stats {
+        overflow-x: auto;
+    }
+    
+    .cluster-stats .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .legend-items {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .metrics-table th, .metrics-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Evaluation metrics table styling */
+.evaluation-metrics {
+    margin: 2rem 0;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.evaluation-metrics h3 {
+    color: #005792;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.metrics-table th, .metrics-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.metrics-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+.metrics-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.metrics-note {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/* Heatmap styling improvements */
+.heatmap-container {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.heatmap-description {
+    margin-top: 1rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.heatmap-legend {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-legend h4 {
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.info.legend {
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Cluster detail hover effect */
+.cluster-detail {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    color: #666;
+    display: none;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    max-width: 300px;
+}
+
+.legend-item:hover .cluster-detail {
+    display: block;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-style: italic;
+    color: #666;
+}
+
+.loading-indicator::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid #ccc;
+    border-top-color: #005792;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+    padding: 1rem;
+    background-color: #ffebee;
+    color: #c62828;
+    /* Continued from previous CSS */
+    border-left: 4px solid #c62828;
+    border-radius: 0 4px 4px 0;
+    margin: 1rem 0;
+}
+
+/* Table improvements for cluster statistics */
+.cluster-stats .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.cluster-stats .data-table th,
+.cluster-stats .data-table td {
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.cluster-stats .data-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.cluster-stats .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Enhanced map markers */
+.centroid-marker {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.centroid-marker div {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+.centroid-marker div:hover {
+    transform: scale(1.5);
+}
+
+/* Cluster map container enhancements */
+.map-container {
+    position: relative;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Map attribution styling */
+.leaflet-control-attribution {
+    font-size: 10px !important;
+    background-color: rgba(255,255,255,0.7) !important;
+}
+
+/* Legend styling improvements */
+.cluster-legend {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Enhanced concept description styling */
+.concept-description {
+    margin-bottom: 20px;
+}
+
+.concept-desc {
+    padding: 15px;
+    background-color: #f5f9ff;
+    border-radius: 5px;
+    border-left: 4px solid #005792;
+}
+
+.concept-desc p {
+    margin-bottom: 0.8rem;
+}
+
+.concept-desc p:last-child {
+    margin-bottom: 0;
+}
+
+/* Make sure Leaflet popup content is readable */
+.leaflet-popup-content {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content strong {
+    color: #005792;
+    display: block;
+    margin-bottom: 3px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 3px;
+}
+
+/* Chart container improvements */
+.chart-container {
+    flex: 1;
+    min-width: 350px;
+}
+
+.chart-wrapper {
+    height: 400px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Visualization row layout */
+.visualization-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.cluster-stats {
+    flex: 1;
+    min-width: 350px;
+    overflow-x: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-row {
+        flex-direction: column;
+    }
+    
+    .cluster-stats {
+        overflow-x: auto;
+    }
+    
+    .cluster-stats .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .legend-items {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .metrics-table th, .metrics-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Additional CSS for clustering page with vertical layout */
+
+/* Section layout styles */
+.cluster-stats-section,
+.distribution-section,
+.evaluation-metrics,
+.heatmap-container {
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+/* Make all sections full width */
+.full-width {
+    width: 100%;
+}
+
+.chart-container.full-width {
+    max-width: 100%;
+}
+
+/* Evaluation metrics table - remove description column */
+.metrics-table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
+}
+
+.metrics-table th, .metrics-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.metrics-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+/* Table container styles */
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    margin: 1rem 0;
+}
+
+/* Chart container for pie chart */
+.chart-container .chart-wrapper {
+    height: 500px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Loading indicators */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    font-style: italic;
+    color: #666;
+}
+
+.loading-indicator::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 2px solid #ccc;
+    border-top-color: #005792;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+    padding: 1rem;
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+    border-radius: 0 4px 4px 0;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+/* Map container styles */
+.map-container {
+    position: relative;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 600px;
+}
+
+/* Cluster statistics table */
+.cluster-stats-section .data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cluster-stats-section .data-table th,
+.cluster-stats-section .data-table td {
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.cluster-stats-section .data-table th {
+    background-color: #005792;
+    color: white;
+    font-weight: bold;
+}
+
+/* Section headers */
+.cluster-stats-section h3,
+.distribution-section h3,
+.evaluation-metrics h3,
+.heatmap-container h3 {
+    color: #00334e;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cluster-stats-section .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .metrics-table th, .metrics-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}

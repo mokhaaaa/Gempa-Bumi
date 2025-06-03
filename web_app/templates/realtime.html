@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Klasterisasi Gempa Bumi - Indonesia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Menambahkan Leaflet CSS untuk maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Informasi Gempa Bumi Real-time</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('realtime') }}">Informasi Real-time</a></li>
+                <li><a href="{{ url_for('historical') }}">Data Historis</a></li>
+                <li><a href="{{ url_for('clustering') }}">Analisis Klasterisasi</a></li>
+                <li><a href="{{ url_for('simulation') }}">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2 id="dataTitle">Earthquake Data from BMKG</h2>
+
+            <div class="data-source-selector">
+                <button class="source-btn active" data-source="latest">Gempa Bumi Terkini</button>
+                <button class="source-btn" data-source="mag5plus">15 Gempa Bumi Magnitude 5.0+</button>
+                <button class="source-btn" data-source="felt">15 Gempa Bumi Dirasakan</button>
+            </div>
+
+            <div class="earthquake-info-container">
+                <!-- Full-width map container -->
+                <div class="map-container full-width">
+                    <div id="earthquakeMap" style="height: 500px;"></div>
+                </div>
+
+                <!-- Legend container -->
+                <div class="legend-container full-width">
+                    <h3>Keterangan Map</h3>
+                    <div class="legend-flex">
+                        <div class="magnitude-legend">
+                            <h4>Magnitude:</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 8px; height: 8px; background-color: #ffff00;"></div>
+                                    <span>1</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 10px; height: 10px; background-color: #ffcc00;"></div>
+                                    <span>2</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 12px; height: 12px; background-color: #ff9900;"></div>
+                                    <span>3</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 14px; height: 14px; background-color: #ff6600;"></div>
+                                    <span>4</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 16px; height: 16px; background-color: #ff3300;"></div>
+                                    <span>5</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 18px; height: 18px; background-color: #ff0000;"></div>
+                                    <span>6</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 20px; height: 20px; background-color: #cc0000;"></div>
+                                    <span>7</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="circle-marker"
+                                        style="width: 22px; height: 22px; background-color: #990000;"></div>
+                                    <span>8+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="depth-legend">
+                            <h4>Depth (Km):</h4>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="depth-marker" style="background-color: #ff0000;"></div>
+                                    <span>&lt;=50</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="depth-marker" style="background-color: #ff9900;"></div>
+                                    <span>&lt;=100</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="depth-marker" style="background-color: #ffff00;"></div>
+                                    <span>&lt;=250</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="depth-marker" style="background-color: #00cc00;"></div>
+                                    <span>&lt;=600</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="depth-marker" style="background-color: #0000ff;"></div>
+                                    <span>&gt;600</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel informasi Gempa Bumi terkini -->
+                <div id="singleQuakeInfo" class="full-width" style="display: none;">
+                    <h3>Informasi Gempa Bumi Terkini</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td>Waktu dan Tanggal</td>
+                            <td id="latestDateTime">-</td>
+                        </tr>
+                        <tr>
+                            <td>Magnitude</td>
+                            <td id="latestMagnitude">-</td>
+                        </tr>
+                        <tr>
+                            <td>Depth</td>
+                            <td id="latestDepth">-</td>
+                        </tr>
+                        <tr>
+                            <td>Lokasi</td>
+                            <td id="latestLocation">-</td>
+                        </tr>
+                        <tr>
+                            <td>Koordinat</td>
+                            <td id="latestCoordinates">-</td>
+                        </tr>
+                        <tr>
+                            <td>Potensi</td>
+                            <td id="latestPotential">-</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Tabel list Gempa Bumi -->
+                <div id="earthquakeTable" class="full-width" style="display: none;">
+                    <h3 id="tableTitle">Daftar Gempa Bumi</h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nomor</th>
+                                    <th>Waktu dan Tanggal</th>
+                                    <th>Magnitude</th>
+                                    <th>Depth</th>
+                                    <th>Koordinat</th>
+                                    <th>Lokasi</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quakeTableBody">
+                                <!-- Data akan diisi melalui JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Analisis Klasterisasi Gempa Bumi - Indonesia</p>
+        <p>Sumber data: <a href="https://www.bmkg.go.id/" target="_blank">BMKG (Badan Meteorologi, Klimatologi, dan
+                Geofisika)</a></p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/realtime.js') }}"></script>
+</body>
+
+</html>

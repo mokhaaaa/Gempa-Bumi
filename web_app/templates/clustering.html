@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Klasterisasi - Data Gempa Bumi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Menambahkan Leaflet CSS untuk maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Menambahkan Chart.js untuk charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Analisis Klasterisasi Gempa Bumi</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('realtime') }}">Informasi Real-time</a></li>
+                <li><a href="{{ url_for('historical') }}">Data Historis</a></li>
+                <li><a href="{{ url_for('clustering') }}">Analisis Klasterisasi</a></li>
+                <li><a href="{{ url_for('simulation') }}">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Hasil Klasterisasi Menggunakan Algoritma IWO</h2>
+            <p>Kerawanan gempa bumi di Indonesia diidentifikasi dengan menggunakan algoritma Invasive Weed Optimization (IWO).</p>
+            
+            <div class="concept-description">
+                <div id="concept-desc" class="concept-desc active">
+                    <p><strong>Klasterisasi:</strong> Klasterisasi menggunakan depth (kedalaman) dan magnitude (kekuatan) untuk membentuk klaster. 
+                    Latitude dan longitude digunakan untuk menampilkan titik klaster di peta setelah proses klasterisasi selesai.</p>
+                </div>
+            </div>
+
+            <div class="cluster-legend">
+                <h3>Keterangan Cluster</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="color-box" style="background-color: #2ECC71;"></span>
+                        <span>Cluster 0: Kurang Rawan</span>
+                        <div class="cluster-detail">Gempa berkedalaman dangkal (1-190 Km) dengan magnitudo rendah hingga menengah (0.99-3.77)</div>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box" style="background-color: #E74C3C;"></span>
+                        <span>Cluster 1: Sangat Rawan</span>
+                        <div class="cluster-detail">Gempa berkedalaman dangkal (1-186 Km) dengan magnitudo tinggi (3.76-7.89)</div>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box" style="background-color: #F1C40F;"></span>
+                        <span>Cluster 2: Cukup Rawan</span>
+                        <div class="cluster-detail">Gempa berkedalaman sangat dalam (305-750 Km) dengan magnitudo cukup tinggi (2.66-7.29)</div>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-box" style="background-color: #E67E22;"></span>
+                        <span>Cluster 3: Rawan</span>
+                        <div class="cluster-detail">Gempa berkedalaman menengah (82-342 Km) dengan magnitudo menengah hingga tinggi (2.10-7.06)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visualisasi dengan map (section pertama) -->
+            <div id="map-container" class="map-container">
+                <div id="cluster-map" style="height: 600px;"></div>
+            </div>
+            
+            <!-- Klaster Statistik (section kedua) -->
+            <div class="cluster-stats-section">
+                <h3>Statistik Klaster</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Klaster</th>
+                                <th>Tingkat Kerawanan</th>
+                                <th>Jumlah Data</th>
+                                <th>Rentang Magnitude</th>
+                                <th>Rata-rata Magnitude</th>
+                                <th>Rentang Depth</th>
+                                <th>Rata-rata Depth</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cluster-stats-body">
+                            <!-- Data akan diisi melalui JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Metrik Evaluasi (section ketiga) -->
+            <div class="evaluation-metrics">
+                <h3>Evaluasi Model IWO Clustering</h3>
+                <table class="metrics-table" id="evaluation-table">
+                    <thead>
+                        <tr>
+                            <th>Metrik Evaluasi</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data akan diisi melalui JavaScript -->
+                    </tbody>
+                </table>
+                <p class="metrics-note">Catatan: Hasil clustering ini menggunakan algoritma Invasive Weed Optimization (IWO) dengan 4 klaster.</p>
+            </div>
+            
+            <!-- Distribution chart (section keempat) -->
+            <div class="distribution-section">
+                <h3>Distribusi Klaster</h3>
+                <div class="chart-container full-width">
+                    <div class="chart-wrapper">
+                        <canvas id="cluster-pie-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Heatmap (section kelima) -->
+            <div class="heatmap-container">
+                <h3>Peta Kerawanan Gempa Bumi Indonesia</h3>
+                <div id="heatmap" style="height: 500px;"></div>
+                <div class="heatmap-description">
+                    <p>Area berwarna hijau menunjukkan daerah dengan kerawanan rendah (Cluster 0: Kurang Rawan), area kuning menunjukkan daerah dengan kerawanan sedang (Cluster 2: Cukup Rawan), area oranye menunjukkan daerah dengan kerawanan tinggi (Cluster 3: Rawan), dan area merah menunjukkan daerah dengan kerawanan sangat tinggi (Cluster 1: Sangat Rawan). Peta ini dihasilkan berdasarkan analisis data gempa dari tahun 2014-2024.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Analisis Klasterisasi Gempa Bumi - Indonesia</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/clustering.js') }}"></script>
+</body>
+</html>

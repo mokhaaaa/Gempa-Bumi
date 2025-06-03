@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Historis Gempa Bumi - Indonesia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Menambahkan DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Data Historis Gempa Bumi</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('realtime') }}">Informasi Real-time</a></li>
+                <li><a href="{{ url_for('historical') }}">Data Historis</a></li>
+                <li><a href="{{ url_for('clustering') }}">Analisis Klasterisasi</a></li>
+                <li><a href="{{ url_for('simulation') }}">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Data Gempa Bumi (2014-2024)</h2>
+            <p>Lihat data historis gempa bumi di Indonesia dari tahun 2014 hingga 2024.</p>
+
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="magnitudeMin">Rentang Magnitude:</label>
+                    <input type="number" id="magnitudeMin" min="0" max="10" step="0.1" placeholder="Min">
+                    <span>to</span>
+                    <input type="number" id="magnitudeMax" min="0" max="10" step="0.1" placeholder="Max">
+                </div>
+
+                <div class="filter-group">
+                    <label for="depthMin">Rentang Depth (km):</label>
+                    <input type="number" id="depthMin" min="0" step="1" placeholder="Min">
+                    <span>to</span>
+                    <input type="number" id="depthMax" min="0" step="1" placeholder="Max">
+                </div>
+
+                <div class="filter-group">
+                    <label for="yearMin">Rentang Tahun:</label>
+                    <input type="number" id="yearMin" min="2014" max="2024" step="1" placeholder="2014">
+                    <span>to</span>
+                    <input type="number" id="yearMax" min="2014" max="2024" step="1" placeholder="2025">
+                </div>
+
+                <button id="applyFilters" class="btn">Apply Filters</button>
+                <button id="resetFilters" class="btn btn-secondary">Reset</button>
+                <button id="downloadCSV" class="btn btn-success">Download CSV</button>
+            </div>
+
+            <div class="table-container">
+                <table id="earthquakeTable" class="display">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Tanggal dan Waktu</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Depth (km)</th>
+                            <th>Magnitude</th>
+                            <th>Lokasi</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data akan di load melalui DataTables -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Analisis Klasterisasi Gempa Bumi - Indonesia</p>
+    </footer>
+
+    <!-- jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static', filename='js/historical.js') }}"></script>
+</body>
+
+</html>

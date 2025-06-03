@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Klasterisasi Gempa Bumi - Indonesia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Menambahkan Leaflet CSS untuk maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Simulasi Klasterisasi Gempa Bumi</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('realtime') }}">Informasi Real-time</a></li>
+                <li><a href="{{ url_for('historical') }}">Data Historis</a></li>
+                <li><a href="{{ url_for('clustering') }}">Analisis Klasterisasi</a></li>
+                <li><a href="{{ url_for('simulation') }}">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Simulasi Data Gempa Bumi</h2>
+            <p>Masukkan data gempa bumi untuk melakukan simulasi dan menentukan klaster mana yang sesuai berdasarkan hasil identifikasi sebelumnya. Model ini
+                menggunakan algoritma IWO.</p>
+
+            <div class="simulation-container">
+                <div class="simulation-sidebar">
+                    <div class="simulation-card">
+                        <h3>Input Data Gempa</h3>
+                        <div class="input-form">
+                            <div class="form-group">
+                                <label for="inputLatitude">Latitude:</label>
+                                <input type="number" id="inputLatitude" min="-11" max="6" step="0.01" placeholder="-2.5"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputLongitude">Longitude:</label>
+                                <input type="number" id="inputLongitude" min="95" max="141" step="0.01"
+                                    placeholder="118" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputDepth">Kedalaman (km):</label>
+                                <input type="number" id="inputDepth" min="1" max="750" step="1" placeholder="10"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputMagnitude">Magnitudo:</label>
+                                <input type="number" id="inputMagnitude" min="0.99" max="8" step="0.1" placeholder="5.0"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button id="useMapToggle" class="btn btn-secondary">Gunakan Klik Map</button>
+                            <button id="classifyCluster" class="btn">Simulasi Data Gempa</button>
+                            <button id="resetForm" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+
+                    <div id="resultCard" class="result-card" style="display: none;">
+                        <h3>Hasil</h3>
+                        <div class="result-content">
+                            <div class="cluster-badge" id="clusterBadge">Cluster ?</div>
+                            <div class="result-details">
+                                <p><strong>Data gempa:</strong></p>
+                                <ul id="inputSummary"></ul>
+
+                                <p><strong>Hasil Analisis:</strong></p>
+                                <p id="clusterResult" class="cluster-result"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simulation-main">
+                    <div id="mapContainer">
+                        <div id="simulationMap" style="height: 500px;"></div>
+                        <p id="mapInstructions" class="map-info" style="display: none;">Klik pada peta untuk memilih
+                            lokasi gempa</p>
+                    </div>
+
+                    <div class="visualization-info">
+                        <h3>Informasi Model IWO</h3>
+                        <p>Model klasterisasi ini dibuat menggunakan algoritma Invasive Weed Optimization (IWO).</p>
+
+                        <div class="model-metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">SSE:</span>
+                                <span class="metric-value">510.513</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Davies-Bouldin Index:</span>
+                                <span class="metric-value">0.736</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Silhouette Score:</span>
+                                <span class="metric-value">0.4927</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Analisis Klasterisasi Gempa Bumi - Indonesia</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+</body>
+
+</html>

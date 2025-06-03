@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Klasterisasi Gempa Bumi - Indonesia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Analisis Klasterisasi Gempa Bumi di Indonesia</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('realtime') }}">Informasi Real-time</a></li>
+                <li><a href="{{ url_for('historical') }}">Data Historis</a></li>
+                <li><a href="{{ url_for('clustering') }}">Analisis Klasterisasi</a></li>
+                <li><a href="{{ url_for('simulation') }}">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Dashboard Analisis Klasterisasi Gempa Bumi</h2>
+            <p>Menyediakan analisis kerawanan gempa bumi di Indonesia dengan menggunakan algoritma Invasive Weed
+                Optimization (IWO).</p>
+            <p>Menganalisis data gempa bumi dari tahun 2014 hingga 2024 untuk mengidentifikasi daerah kerawanan gempa
+                bumi di seluruh Indonesia.</p>
+        </section>
+
+        <section class="features">
+            <h2>Fitur</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Informasi Gempa Bumi Real-time</h3>
+                    <p>Memberikan kejadian gempa bumi secara real-time di seluruh Indonesia dengan peta interaktif.</p>
+                    <a href="{{ url_for('realtime') }}" class="btn">Pilih</a>
+                </div>
+                <div class="feature-card">
+                    <h3>Data Historis</h3>
+                    <p>Arsip gempa bumi dari tahun 2014 hingga 2024 di Indonesia.</p>
+                    <a href="{{ url_for('historical') }}" class="btn">Pilih</a>
+                </div>
+                <div class="feature-card">
+                    <h3>Analisis Klasterisasi</h3>
+                    <p>Memberikan hasil klasterisasi daerah kerawanan yang diidentifikasi melalui algoritma IWO.</p>
+                    <a href="{{ url_for('clustering') }}" class="btn">Pilih</a>
+                </div>
+                <div class="feature-card">
+                    <h3>Simulasi</h3>
+                    <p>Menjalankan simulasi dengan data gempa yang dipilih untuk melihat kerawanan.</p>
+                    <a href="{{ url_for('simulation') }}" class="btn">Pilih</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Analisis Klasterisasi Gempa Bumi - Indonesia</p>
+    </footer>
+</body>
+
+</html>
